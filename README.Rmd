@@ -17,3 +17,42 @@ Include your answers in this document (Rmd file). Make sure that it knits proper
 
 All submissions to the github repo will be automatically uploaded for grading once the due date is passed.
 Submit a link to your repository on Canvas (only one submission per team) to signal to the instructors that you are done with your submission.
+
+#Step 1).
+
+```{r}
+library(classdata)
+library(dplyr)
+library(ggplot2)
+
+#inspecting data
+data(ames)
+head(ames)
+str(ames)
+```
+
+
+
+```{r}
+#Summary of the statistics for Sale Price
+summary(ames$`Sale Price`)
+```
+
+
+
+
+```{r}
+# updated histogram to better see the distribution
+ggplot(ames %>% filter(`Sale Price` > 0), aes(x = `Sale Price`)) +
+  geom_histogram(bins = 50, fill = "red", color = "blue", alpha = 0.8) +
+  scale_x_log10(labels = scales::dollar) +
+  labs(title = "Distribution of Sale Prices (Log Scale)",
+       x = "Sale Price ($, log scale)",
+       y = "Count") +
+  theme_minimal()
+
+```
+
+
+
+
