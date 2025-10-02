@@ -1,4 +1,5 @@
 ---
+title: "Lab #2: Ames Housing Data"
 output: github_document
 ---
 
@@ -6,21 +7,26 @@ output: github_document
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# Lab report #1
 
-Follow the instructions posted at https://ds202-at-isu.github.io/labs.html for the lab assignment. The work is meant to be finished during the lab time, but you have time until Monday evening to polish things.
+**Our analysis of the Ames housing data revealed these findings:**
 
-Include your answers in this document (Rmd file). Make sure that it knits properly (into the md file). Upload both the Rmd and the md file to your repository.  
+Sale prices can range from 0 to over 4.5 million with most properties being between $100,000-$500,000.
 
-All submissions to the github repo will be automatically uploaded for grading once the due date is passed.
-Submit a link to your repository on Canvas (only one submission per team) to signal to the instructors that you are done with your submission.
+There are some outliers with properties that have $0 sale price which are most likely errors in the dataset.
 
-#Step 1).
+Property characteristics like living area, bedrooms, and neighborhood strongly affect sale prices.
 
-```{r}
+Newer properties and those with air conditioning have higher pricing on average.
+
+The distribution of price differs from neighborhood to neighborhood, with some areas having median prices 3x higher than others
+
+
+**Step 1 - Variables and What They Mean** 
+
+```{r, echo=FALSE}
 library(classdata)
 library(dplyr)
 library(ggplot2)
@@ -31,17 +37,53 @@ head(ames)
 str(ames)
 ```
 
+**Here are the 16 variables and what they mean in this dataset:**
 
+Parcel ID (Character): A unique identifier for each property parcel in the form of a 10-digit code. 
 
-```{r}
+Address (Character): The street address of each property including city. 
+
+Style (Factor): A category description with 12 types that describe the style of the property.
+
+Occupancy (Factor): A category description with 5 types that describes the type of residential housing it is.
+
+Sale Date (Date): The date when the property sale happened, formatted as year-month-day.
+
+Sale Price (Numeric): The price of the property in US dollars and it ranges anywhere from $0 to $4,496,640 (of course the $0 entries are outlines/anomalies).
+
+Multi Sale (Character): A variable for multiple sales. This seems to appears to have mostly "NA" entries.
+
+Year Built (Numeric): The year the property was built. This ranges from the 1800s to present. 
+
+Acres (Numeric): The lot size measured in acre and this ranges from small values like (0.023) to larger properties.
+
+Total Living Area (sf) (Numeric): The actual living space in square feet. Ranges quite largerly from property to property.
+
+Bedrooms (Numeric): The number of bedrooms in each property. This typically ranges from 1 to 5+ bedrooms.
+
+Finished Bsmt Area (sf) (Numeric): The finished basement area in square feet and the many "NA" values means there might be no basement.
+
+Lot Area (sf) (Numeric): The total lot area in square feet, and seems to correlate strongly with acres.
+
+AC (Character): Air conditioning variable with "Yes" or "No" values to describe if the property has AC or not
+
+FirePlace (Character): A variable with "Yes" or "No" values to describe if fire place is present in property.
+
+Neighborhood (Factor): Geographic categorical type variable with 42 different neighborhood codes representing areas within Ames.
+
+In conclusion, this dataset has 6,935 entries that are made up of house related measurements, categories, and character descriptors that all work to describe the property characteristics and sales associated with them in Ames since 2017.
+
+**Step 2 - Variable Of Interest** 
+Yes, Sale Price is the variable of special interest/focus
+```{r, echo=FALSE}
 #Summary of the statistics for Sale Price
 summary(ames$`Sale Price`)
 ```
 
 
+**Step 3 - Histogram Showing Sale Price** 
 
-
-```{r}
+```{r, echo=FALSE}
 # updated histogram to better see the distribution
 ggplot(ames %>% filter(`Sale Price` > 0), aes(x = `Sale Price`)) +
   geom_histogram(bins = 50, fill = "red", color = "blue", alpha = 0.8) +
