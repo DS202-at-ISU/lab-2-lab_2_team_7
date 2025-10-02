@@ -201,7 +201,7 @@ The number of bedrooms does not have much correlation to the sale price.
 There are many outliers in the sale price with some houses being far
 more expensive than others regardless of the number of bedrooms.
 
-**Lexi’s Work: **
+**Lexi’s Work:**
 
 ## what is the range of that variable? plot. describe the pattern.
 
@@ -289,17 +289,16 @@ with condos and apartments far less frequent.
 
 **Relationship to Sale Price:**
 
-Single family homes show the largest spread of sale prices and the
-highest median values.
+Single family homes show the largest spread of sale prices.
 
-Condos and townhouses cluster lower, with little high priced outliers.
+Condo prices reach really far into high prices with few outliers.
 
-Duplexes and apartments usually sell at lower prices compared to other
-types.
+Two family duplexes have the tightest spread when it comes to sale
+prices across all categories.
 
 Some condos and apartments show really high or low prices, potentially
 due to bad data collection/errors.
 
 Occupancy type does affect sale price. Single family homes make up most
 of the market and have the widest range of prices, while other housing
-types are less common and usually sell for lower/more consistent prices
+types are less common and usually sell for more consistent prices.
