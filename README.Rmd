@@ -299,7 +299,7 @@ ggplot(ames %>% filter(`Sale Price` > 0),
   geom_boxplot(fill = "blue", alpha = 0.7) +
   scale_y_log10(labels = scales::dollar) +
   labs(title = "Sale Price by Occupancy Type",
-       x = "Occupancy", y = "Sale Price (log scale)") +
+       x = "Occupancy", y = "Sale Price") +
   theme_minimal() +
   coord_flip()
 ```
@@ -312,12 +312,13 @@ The bar chart confirms that single family homes are the most common, with condos
 
 **Relationship to Sale Price:**
 
-Single family homes show the largest spread of sale prices and the highest median values.
+Single family homes show the largest spread of sale prices.
 
-Condos and townhouses cluster lower, with little high priced outliers.
+Condo prices reach really far into high prices with few outliers.
 
-Duplexes and apartments usually sell at lower prices compared to other types.
+Two family duplexes have the tightest spread when it comes to sale prices across all categories.
 
 Some condos and apartments show really high or low prices, potentially due to bad data collection/errors.
 
-Occupancy type does affect sale price. Single family homes make up most of the market and have the widest range of prices, while other housing types are less common and usually sell for lower/more consistent prices
+
+Occupancy type does affect sale price. Single family homes make up most of the market and have the widest range of prices, while other housing types are less common and usually sell for more consistent prices.
